@@ -1,3 +1,5 @@
+var fs = require('fs.extra');
+
 var RjsStrategy = function () {
 
   var strategyfolder = 'rjs/';
@@ -8,7 +10,16 @@ var RjsStrategy = function () {
     generator.template(strategyfolder + '_Gruntfile.coffee', 'Gruntfile.coffee');
     generator.template(strategyfolder + '_Gemfile', 'Gemfile');
     generator.template(strategyfolder + '_Rakefile', 'Rakefile');
-    generator.template(strategyfolder + 'jasmine/*', 'Rakefile');
+
+    var testFolder = generator.sourceRoot() + '/' + strategyfolder + 'jasmine';
+    fs.copyRecursive(testFolder, './test', function (err) {
+      if (err) {
+        console.log('file read error')
+        throw err;
+      }
+    });
+
+    generator.template(strategyfolder + '_bower-component-tests.coffee', './test/coffee/' + generator.componentName + '-spec.coffee');
   }
 
 };
