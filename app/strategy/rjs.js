@@ -8,7 +8,7 @@ var RjsStrategy = function () {
     generator.template(strategyfolder + '_Gruntfile.coffee', 'Gruntfile.coffee');
     generator.template(strategyfolder + '_Gemfile', 'Gemfile');
     generator.template(strategyfolder + '_Rakefile', 'Rakefile');
-    generator.template(strategyfolder + 'jasmine/*', 'test/');
+    generator.template(strategyfolder + 'jasmine/*', 'Rakefile');
   }
 
 };

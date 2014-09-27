@@ -7,7 +7,6 @@ var yosay = require('yosay');
 var chalk = require('chalk');
 var _ = require('underscore.string');
 
-
 /**
  * Initialization Function.
  */
@@ -33,22 +32,17 @@ BowerGenerator.prototype.askFor = function askFor() {
   var done = this.async();
 
   // Have Yeoman greet the user.
-  this.log(yosay('Welcome to the marvelous Bower Components generator!'));
-  this.log(chalk.blue.bgRed.bold('Lets Rock!!!'));
+  this.log(yosay('yo generator for bower + rjs'));
 
   // Promot - If Dummy, nothing will be asked to user
   var prompts;
   if (this.options.dummy !== true) {
     var prompts = [{
       name: 'bowerComponentName',
-      message: "What's the name of your bower component?"
+      message: "enter a name for your bower component:"
     }, {
       name: 'description',
-      message: 'Provide a short description for your component!'
-    }, {
-      // TODO: This must be optional.
-      name: 'livereloadPort',
-      message: 'Which port do you wish to use for livereloading?'
+      message: 'provide a short description for your component or press enter'
     }];
   } else {
     prompts = [];
@@ -58,22 +52,16 @@ BowerGenerator.prototype.askFor = function askFor() {
   this.prompt(prompts, function (props) {
 
     // dummy project will use default vaules
-    if (this.options.dummy === true) {
-      this.bowerComponentName = 'dummy';
-      this.description = 'Some dummy and clean componnent.';
-      // TODO: See about it!
-      this.livereloadPort = 35729;
-    } else {
-      this.bowerComponentName = props.bowerComponentName;
-      this.description = props.description;
-      // TODO: See about it!
-      this.livereloadPort = props.livereloadPort;
-    }
-
-    // ???
+    // if (this.options.dummy === true) {
+    //   this.bowerComponentName = 'dummy';
+    //   this.description = 'dummy component';
+    //   this.livereloadPort = 35729;
+    // } else {
+    this.bowerComponentName = props.bowerComponentName;
+    this.description = props.description || props.bowerComponentName;
+    this.livereloadPort = 35729;
     this.slug = _.slugify(this.bowerComponentName);
     this.validVariableName = _.capitalize(_.slugify(this.bowerComponentName)).replace('-', '');
-
     done();
   }.bind(this));
 };
@@ -86,32 +74,37 @@ BowerGenerator.prototype.app = function app() {
 
   // Choose strategy by used choice
   var strategy;
-  if (this.options.coffee === true) {
-    this.extension = 'coffee';
-
-    this.log('Generating CoffeeScript code.');
-    strategy = require('./strategy/coffee.js');
-  } else {
-    this.extension = 'js';
-
-    this.log('Generating javaScript code.');
-    strategy = require('./strategy/javascript.js');
+  this.options.rjs = true;
+  if (this.options.rjs === true) {
+    this.extension = 'rjs';
+    this.log('generating bower-rjs module');
+    strategy = require('./strategy/rjs.js');
   }
+
+  //if (this.options.coffee === true) {
+  //  this.extension = 'coffee';
+  //  this.log('Generating CoffeeScript code.');
+  //  strategy = require('./strategy/coffee.js');
+  //} else {
+  //  this.extension = 'js';
+
+  //  this.log('Generating javaScript code.');
+  //  strategy = require('./strategy/javascript.js');
+  //}
 
   // Execute extrategy configuration.
   strategy.execute(this);
 
-  if (this.options.dummy === true) {
-    // Create additional dummy files.
-    require('./strategy/dummy.js').createdumies(this, this.options.coffee);
-  }
+  // if (this.options.dummy === true) {
+  //   // Create additional dummy files.
+  //   require('./strategy/dummy.js').createdumies(this, this.options.coffee);
+  // }
 
-  this.template('_package.json', 'package.json');
-  this.template('_bower.json', 'bower.json');
-  this.copy('_index.html', 'examples/index.html');
+  //this.template('_package.json', 'package.json');
+  //this.template('_bower.json', 'bower.json');
+  //this.copy('_index.html', 'examples/index.html');
 };
 
 BowerGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
 };
