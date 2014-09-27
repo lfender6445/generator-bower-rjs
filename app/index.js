@@ -46,6 +46,7 @@ BowerGenerator.prototype.askFor = function askFor() {
 BowerGenerator.prototype.app = function app() {
   this.mkdir('test');
   this.mkdir('src');
+  this.mkdir('dist');
   this.mkdir('examples');
   this.componentName = _.slugify(this.bowerComponentName);
 
