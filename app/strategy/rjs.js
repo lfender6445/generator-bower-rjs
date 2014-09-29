@@ -5,14 +5,17 @@ var RjsStrategy = function () {
   var strategyfolder = 'rjs/';
   this.execute = function (generator) {
     generator.template(strategyfolder + '_bower.json', 'bower.json');
-    generator.template(strategyfolder + '_bower-component.coffee', 'src/' + generator.bowerComponentName + '.coffee');
+    generator.template(strategyfolder + '_bower-component.coffee', 'src/' + generator.slug + '.coffee');
 
     // TODO: Is there way to handle bower related grunt tasks via gulp?
     // Build Files + Scripts
     generator.template(strategyfolder + '_package.json', 'package.json');
     generator.template(strategyfolder + '_Gruntfile.js', 'Gruntfile.js');
     generator.template(strategyfolder + '_gulpfile.coffee', 'gulpfile.coffee');
+
     generator.template(strategyfolder + '_require.build.js', 'require.build.js');
+    generator.template(strategyfolder + '_require.config.js', 'dist/require.config.js');
+
     generator.template(strategyfolder + '_Gemfile', 'Gemfile');
     generator.template(strategyfolder + '_Rakefile', 'Rakefile');
 
@@ -22,7 +25,7 @@ var RjsStrategy = function () {
     // Add tests
     var testFolder = generator.sourceRoot() + '/' + strategyfolder + 'jasmine';
     fs.copyRecursive(testFolder, './test', function (err) { if (err) { throw err; } });
-    generator.template(strategyfolder + '_bower-component-tests.coffee', './test/coffee/' + generator.bowerComponentName + '-spec.coffee');
+    generator.template(strategyfolder + '_bower-component-tests.coffee', './test/coffee/' + generator.slug + '-spec.coffee');
   }
 
 };
