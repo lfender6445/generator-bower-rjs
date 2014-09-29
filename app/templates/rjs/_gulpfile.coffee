@@ -19,7 +19,7 @@ sources =
 
 gulp.task 'build', ->
   exec "./node_modules/requirejs/bin/r.js -o require.build.js optimize=none", ->
-    console.log 'Build success - package can be found at ./dist/sem-campaign.js'
+    console.log 'Build success - package can be found at dist/<%= bowerComponentName %>.js'
 
 gulp.task 'default', ->
   gulp.src sources.coffee
@@ -59,5 +59,3 @@ inc = (importance, initials) ->
 gulp.task 'patch',   -> inc 'patch'
 gulp.task 'feature', -> inc 'minor'
 gulp.task 'release', -> inc 'major'
-
-eomponentName
