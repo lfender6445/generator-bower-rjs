@@ -1,27 +1,29 @@
 {
-  "name": "generator-bower",
-  "version": "0.1.1",
-  "description": "A yeoman generator for bower components",
+  "name": "generator-bower-rjs",
+  "version": "0.0.1",
+  "description": "Yo generator for Bower + Require JS",
   "license": "MIT",
   "author": {
-    "name": "Thorsten Hans",
-    "email": "thorsten.hans@gmail.com",
-    "url": "https://github.com/ThorstenHans"
+    "name": "Luke Fender",
+    "email": "lfender6445@gmail.com",
+    "url": "https://github.com/lfender6445/generator-bower-rjs"
   },
   "readmeFilename": "README.md",
-  "homepage": "https://github.com/ThorstenHans/generator-bower",
+  "homepage": "https://github.com/lfender6445/generator-bower-rjs",
   "bugs": {
-    "url": "https://github.com/ThorstenHans/generator-bower/issues"
+    "url": "https://github.com/lfender6445/generator-bower-rjs"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ThorstenHans/generator-bower.git"
+    "url": "git://github.com/lfender6445/generator-bower-rjs.git"
   },
   "keywords": [
     "yeoman-generator",
     "bower",
     "bower-component",
     "coffee-script",
+    "requirejs",
+    "amd",
     "tdd"
   ],
   "main": "app/index.js",
