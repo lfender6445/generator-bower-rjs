@@ -22,10 +22,10 @@ var RjsStrategy = function () {
     // Examples
     generator.template(strategyfolder + '_index.html', 'examples/index.html');
 
-    // Add tests
-    var testFolder = generator.sourceRoot() + '/' + strategyfolder + 'jasmine';
-    fs.copyRecursive(testFolder, './test', function (err) { if (err) { throw err; } });
-    generator.template(strategyfolder + '_bower-component-tests.coffee', './test/coffee/' + generator.slug + '-spec.coffee');
+    // Add specs
+    var specFolder = generator.sourceRoot() + '/' + strategyfolder + 'jasmine';
+    fs.copyRecursive(specFolder, './spec', function (err) { if (err) { throw err; } });
+    generator.template(strategyfolder + '_bower-component-spec.coffee', './spec/javascripts/coffee/' + generator.slug + '-spec.coffee');
   }
 
 };
