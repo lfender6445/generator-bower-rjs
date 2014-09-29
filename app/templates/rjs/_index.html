@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title><%= bowerComponentName%></title>
+    <title><%= bowerComponentName %></title>
+    <script src="../vendor/bower/require.js"></script>
+    <script src="../dist/require.config.js"></script>
+    <script>
+      require(["<%= bowerComponentName %>"], function(module){
+        console.log(module);
+      });
+     </script>
 </head>
 <body>
     <section>
-        <h1>Yo <%= bowerComponentName%> !</h1>
+        <h1> <%= bowerComponentName%> </h1>
     </section>
-
-    <script src="../<%= componentName %>.js"></script>
-    <script>
-        console.log(<%= validVariableName %>())
-    </script>
-    <script src="//localhost:<%= livereloadPort %>/livereload.js"></script>
 </body>
 </html>

@@ -38,7 +38,7 @@ BowerGenerator.prototype.askFor = function askFor() {
     this.description = props.description || props.bowerComponentName;
     this.livereloadPort = 35729;
     this.slug = _.slugify(this.bowerComponentName);
-    this.validVariableName = _.capitalize(_.slugify(this.bowerComponentName)).replace('-', '');
+    this.coffeeClass = _.camelize(this.bowerComponentName);
     done();
   }.bind(this));
 };
