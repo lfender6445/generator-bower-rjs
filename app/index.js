@@ -7,6 +7,7 @@ var yeoman  = require('yeoman-generator');
 var yosay   = require('yosay');
 var chalk   = require('chalk');
 var _       = require('underscore.string');
+var exec =  require('child_p-ocess').exec;
 
 var BowerGenerator = module.exports = function Appgenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
@@ -14,6 +15,7 @@ var BowerGenerator = module.exports = function Appgenerator(args, options) {
   this.on('end', function () {
     if (!this.options['skip-install']) {
       this.installDependencies();
+      exec('npm start;')
     }
   });
 

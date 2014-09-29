@@ -11,11 +11,11 @@ p = require('./package.json')
 destinations =
   # Loc for compiled coffee output
   js:   './dist/shared/'
-  test: './spec/javascripts/shared/'
+  test: './test/shared/'
 
 sources =
   coffee: './src/*.coffee'
-  test:   './spec/javascripts/coffee/*.coffee'
+  test:   './test/coffee/*.coffee'
 
 gulp.task 'build', ->
   exec "./node_modules/requirejs/bin/r.js -o require.build.js optimize=none", ->
@@ -31,7 +31,7 @@ gulp.task 'test', ->
     .pipe(coffee({bare: true}))
     .pipe(gulp.dest(destinations.test))
 
-gulp.task 'watch', ['build'], ->
+gulp.task 'watch', ->
   gulp.watch sources.coffee, ['default', 'build']
   gulp.watch sources.test, ['test']
 
