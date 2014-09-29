@@ -26,7 +26,9 @@
     "gulp-shell": "^0.2.9",
     "gulp-tag-version": "^1.0.2",
     "gulp-uglify": "^0.3.1",
-    "gulp-util": "^2.2.20"
+    "gulp-util": "^2.2.20",
+    "requirejs": "^2.1.14",
+    "rjs": "^4.0.2"
   },
   "scripts": {
     "start": "npm install; bower install; grunt bower; ./node_modules/gulp/bin/gulp.js watch;"

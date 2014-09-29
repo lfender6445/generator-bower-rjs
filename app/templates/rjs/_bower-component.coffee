@@ -1,3 +1,3 @@
 define [], () ->
-  class <%= validVariableName %>
+  class <%= coffeeClass %>
     constructor: ->

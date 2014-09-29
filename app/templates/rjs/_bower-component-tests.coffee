@@ -1,12 +1,13 @@
-describe {<%= validVariableName %>}, ->
+describe '<%= coffeeClass %>', ->
 
   module = null
 
   beforeEach (done) ->
-    require ["dist/#{<%= validVariableName %>}"], (mod) -> module = new mod()
+    require ["dist/#{<%= slug %>}"], (mod) -> module = new mod()
+    done()
 
   afterEach ->
     module = null
 
-  it 'should do something', ->
-    assert(2+2).eq(4)
+  it 'exists', ->
+    expect(module).toBeTruthy()
