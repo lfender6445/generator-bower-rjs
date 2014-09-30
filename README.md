@@ -12,8 +12,9 @@ cd my-new-project
 
 Run `yo bower-rjs`
 
-Run `grunt` for building and `grunt serve` for preview
-
+Run `gulp`  for building
+Run `grunt` to automate rjs configs
+Run `bundle; bundle exec rake jasmine` to start your tests
 ## TODO ##
 
 Add support for plain old javascript
