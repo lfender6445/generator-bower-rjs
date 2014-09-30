@@ -3,7 +3,7 @@ describe '<%= coffeeClass %>', ->
   module = null
 
   beforeEach (done) ->
-    require ["dist/<%= bowerComponentName %>"], (mod) -> module = new mod()
+    require ["dist/<%= slug %>"], (mod) -> module = new mod()
     done()
 
   afterEach ->

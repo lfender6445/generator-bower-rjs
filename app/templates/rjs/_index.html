@@ -1,18 +1,23 @@
 <!doctype html>
 <html>
 <head>
-    <title><%= bowerComponentName %></title>
+    <title>bower-rjs <%= slug %>.js</title>
     <script src="../vendor/bower/require.js"></script>
     <script src="../dist/require.config.js"></script>
     <script>
-      require(["<%= bowerComponentName %>"], function(module){
-        console.log(module);
+      require(["<%= slug %>"], function(module){
+        window.module = module;
       });
      </script>
 </head>
 <body>
     <section>
-        <h1> <%= bowerComponentName%> </h1>
+        <h1> <%= slug %>.js </h1>
+        <code id="output"> </code>
     </section>
+    <script>
+        elem = document.getElementById('output');
+        elem.innerHtml = window.module;
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@ require.config({
   shim: {},
   paths: {
     requirejs: "../vendor/bower/requirejs/require",
-    <%= slug %>: "dist/<%= slug %>"
+    "<%= slug %>": "dist/<%= slug %>"
   },
   packages: [
 

@@ -15,7 +15,6 @@ var BowerGenerator = module.exports = function Appgenerator(args, options) {
   this.on('end', function () {
     if (!this.options['skip-install']) {
       this.installDependencies();
-      // exec('npm start;');
     }
   });
 
@@ -55,7 +54,7 @@ BowerGenerator.prototype.app = function app() {
   this.options.rjs = true;
   if (this.options.rjs === true) {
     this.extension = 'rjs';
-    this.log('generating bower-rjs module');
+    this.log('bower-rjs');
     strategy = require('./strategy/rjs.js');
   }
   strategy.execute(this);
