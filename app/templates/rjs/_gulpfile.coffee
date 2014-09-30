@@ -14,20 +14,21 @@ test_in  = './spec/javascripts/coffee/*'
 
 gulp.task 'default', ->
   gulp.start 'build_coffee'
-  gulp.start 'build_rjs'
   gulp.watch './**/*.coffee', ->
     gulp.start 'build_coffee'
     gulp.start 'build_rjs'
 
-gulp.task 'build_rjs', ->
+gulp.task 'build_rjs', ['build_coffee'], ->
   exec "./node_modules/requirejs/bin/r.js -o require.build.js optimize=none", ->
-    console.log 'Build success - package can be found at ./dist/<%= slug =>'
+    console.log 'Build success - package can be found at ./dist/<%= slug %>.js'
 
 gulp.task 'build_coffee', ->
   try
     gulp.src(js_in)
       .pipe(coffee().on('error', gutil.log))
       .pipe(gulp.dest(js_out))
+    # important we build rjs only after coffee assets have compiled
+    gulp.start 'build_rjs'
     gulp.src(test_in)
       .pipe(coffee())
       .pipe(gulp.dest(test_out))
@@ -35,10 +36,10 @@ gulp.task 'build_coffee', ->
     console.log e
 
 # release tasks
-prompt     = require('gulp-prompt')
-git        = require('gulp-git')
-bump       = require('gulp-bump')
-filter     = require('gulp-filter')
+prompt      = require('gulp-prompt')
+git         = require('gulp-git')
+bump        = require('gulp-bump')
+filter      = require('gulp-filter')
 tag_version = require('gulp-tag-version')
 paths =
   scripts: ['dist/*.js']

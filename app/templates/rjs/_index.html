@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>bower-rjs <%= slug %>.js</title>
-    <script src="../vendor/bower/require.js"></script>
+    <script src="../vendor/bower/requirejs/require.js"></script>
     <script src="../dist/require.config.js"></script>
     <script>
       require(["<%= slug %>"], function(module){
@@ -12,7 +12,7 @@
 </head>
 <body>
     <section>
-        <h1> <%= slug %>.js </h1>
+        <h1> <%= slug %>.js module</h1>
         <code id="output"> </code>
     </section>
     <script>
