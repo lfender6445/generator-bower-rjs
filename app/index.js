@@ -33,11 +33,15 @@ BowerGenerator.prototype.askFor = function askFor() {
   }, {
     name: 'description',
     message: 'provide a short description for your rjs module or press enter'
+  }, {
+    name: 'cofffee_preference'
+    message: 'Do you prefer coffeescript? y(es) or n(o)
   }];
   this.prompt(prompts, function (props) {
     this.bowerComponentName = props.bowerComponentName;
     this.description = (props.description || props.bowerComponentName);
     this.slug = _.slugify(this.bowerComponentName);
+    // if _.include this.coffeePreference.toLowerCase(), 'y'
     this.coffeeClass = _.camelize(this.bowerComponentName);
     done();
   }.bind(this));
