@@ -1,4 +1,5 @@
 gulp    = require 'gulp'
+
 coffee  = require 'gulp-coffee'
 uglify  = require 'gulp-uglify'
 gutil   = require 'gulp-util'
@@ -47,32 +48,4 @@ gulp.task 'build_coffee', ->
     console.log e
 
 # release tasks
-prompt      = require('gulp-prompt')
-git         = require('gulp-git')
-bump        = require('gulp-bump')
-filter      = require('gulp-filter')
-tag_version = require('gulp-tag-version')
-paths =
-  scripts: ['dist/*.js']
-  versionToBump: ['./package.json', './bower.json']
-  versionToCheck: 'bower.json'
-  dest: '.'
-
-# version bump for (bower & package).json files, w prompt for commit
-inc = (importance) ->
-  gulp.src(paths.versionToBump)
-    .pipe(bump(type: importance))
-    .pipe(gulp.dest(paths.dest))
-    .pipe prompt.prompt(
-      type: "input"
-      name: "commit_msg"
-      message: "Enter a commit message:"
-    , (res) ->
-      git.commit(res.commit_msg)
-    ).pipe(filter(paths.versionToCheck))
-    .pipe tag_version()
-    .pipe(git.push('origin', 'master', { args: '--tags' }))
-
-gulp.task 'patch',   -> inc 'patch'
-gulp.task 'feature', -> inc 'minor'
-gulp.task 'release', -> inc 'major'
+require('gulp-release-tasks')(gulp)

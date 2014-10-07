@@ -1,96 +1,58 @@
-/*global describe, beforeEach, it */
 'use strict';
-var path = require('path');
+var path    = require('path');
 var helpers = require('yeoman-generator').test;
-var assert = require('yeoman-generator').assert;
+var assert  = require('yeoman-generator').assert;
+var rimraf  = require('rimraf');
 
-describe('bower generator', function () {
+describe('generator-bower-rjs', function () {
 
   var promt = {
     'bowerComponentName': 'bower mock',
-    'description': 'A Mock to test this package.',
-    'livereloadPort': 35000
+    'description': ''
   };
 
   beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = helpers.createGenerator('bower:app', [
-        '../../app'
-      ]);
+    var folder = path.join(__dirname, './temp');
+    rimraf(folder + '/spec/javascripts', function(){});
+    helpers.testDirectory(folder, function (err) {
+      if (err) { return done(err); }
+      this.app = helpers.createGenerator('bower-rjs:app', [ '../../app' ]);
       done();
     }.bind(this));
   });
 
   describe('file generation test', function () {
     var expected = [
-      // add files you expect to exist here.
       '.jshintrc',
-      '.editorconfig',
-
       'bower.json',
+      'Gemfile',
+      'gruntfile.js',
+      'gulpfile.coffee',
       'package.json',
-
-      'examples/index.html'
-    ];
-    var coffee_file = [
-      'Gruntfile.coffee',
+      'Rakefile',
+      'require.build.js',
+      'dist/require.config.js',
+      'examples/index.html',
       'src/bower-mock.coffee',
-      'test/bower-mock-tests.coffee'
+      'spec/javascripts/coffee/bower-mock-spec.coffee',
+      'spec/javascripts/helpers/spec_helper.js',
+      'spec/javascripts/shared/',
+      'spec/javascripts/support/jasmine.yml',
+      'spec/javascripts/support/jasmine_helper.rb'
     ];
-    var javascript_files = [
-      'Gruntfile.js',
-      'src/bower-mock.js',
-      'test/bower-mock-tests.js'
-    ];
-
-    // Mock each test with basic information.
-    beforeEach(function () {
+    beforeEach(function (done) {
       helpers.mockPrompt(this.app, promt);
       this.app.options['skip-install'] = true;
+      done();
     });
 
     it('creates expected common files', function (done) {
-      // And check for them...
       this.app.run({}, function () {
         assert.file(expected);
         done();
       });
     });
 
-    it('creates expected coffee files', function (done) {
-      this.app.options['coffee'] = true;
-      // And check for them...
-      this.app.run({}, function () {
-        assert.file([].concat(expected, coffee_file));
-        assert.noFile(javascript_files);
-        done();
-      });
-    });
-
-    it('creates expected javascipt files', function (done) {
-      // And check for them...
-      this.app.run({}, function () {
-        assert.file([].concat(expected, javascript_files));
-        assert.noFile(coffee_file);
-        done();
-      });
-    });
-
-  });
-
-  /**
-   * Test file contents.
-   */
-  describe('test file contents', function () {
-    // Check package.json and bower.json
-    // it('test basic file values', function (done) {
-    //   // body...
-    //   done();
-    // });
   });
 
 });

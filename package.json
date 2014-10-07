@@ -20,8 +20,6 @@
   "keywords": [
     "yeoman-generator",
     "bower",
-    "bower-component",
-    "coffee-script",
     "requirejs",
     "amd",
     "tdd"
@@ -44,7 +42,10 @@
     "bower": "^1.3.12",
     "generator-bower-rjs": "0.0.1",
     "grunt-cli": "^0.1.13",
+    "gulp": "^3.8.8",
+    "gulp-release-tasks": "0.0.3",
     "mocha": "*",
+    "rimraf": "^2.2.8",
     "yo": "^1.1.2"
   },
   "peerDependencies": {
