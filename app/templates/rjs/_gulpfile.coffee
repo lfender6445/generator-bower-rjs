@@ -1,11 +1,10 @@
 gulp    = require 'gulp'
 
 coffee  = require 'gulp-coffee'
-uglify  = require 'gulp-uglify'
+# uglify  = require 'gulp-uglify'
 gutil   = require 'gulp-util'
 rename  = require 'gulp-rename'
 watch   = require 'gulp-watch'
-p       = require './package.json'
 exec    = require('child_process').exec
 
 js_in        = './src/**/*.js'
@@ -17,6 +16,8 @@ coffee_out   = './dist/shared/'
 test_in  = './spec/javascripts/coffee/*'
 test_out = './spec/javascripts/shared/'
 
+build_file = './require.build.js'
+
 gulp.task 'default', ->
   gulp.start 'build_coffee'
   gulp.watch './**/*.coffee', ->
@@ -27,7 +28,9 @@ gulp.task 'default', ->
     gulp.start 'copy_js'
     gulp.start 'build_rjs'
 
-# important we build r.js build AFTER coffee assets have compiled or been transferred to dist
+  gulp.watch build_file, ->
+    gulp.start 'build_rjs'
+
 gulp.task 'build_rjs', ['build_coffee', 'copy_js'], ->
   exec "./node_modules/requirejs/bin/r.js -o require.build.js optimize=none", ->
     console.log 'Build success - package can be found at ./dist/<%= slug %>.js'
