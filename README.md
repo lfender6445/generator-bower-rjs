@@ -8,6 +8,7 @@ yeoman generator for bower pkgs wrapped in a requirejs module definition
 
 * not yet in npm registry, for now clone the project, cd into it, then run `npm link generator-bower-rjs`
 ```
+npm install -g yo
 npm install -g generator-bower-rjs
 mkdir my-new-project
 cd my-new-project
