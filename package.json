@@ -1,6 +1,6 @@
 {
   "name": "generator-bower-rjs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Yo generator for Bower + Require JS",
   "license": "MIT",
   "author": {
