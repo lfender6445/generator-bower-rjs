@@ -11,6 +11,7 @@ var RjsStrategy = function () {
     generator.template(strategyfolder + '_require.config.js', 'dist/require.config.js');
     generator.template(strategyfolder + '_Gemfile', 'Gemfile');
     generator.template(strategyfolder + '_Rakefile', 'Rakefile');
+    generator.template(strategyfolder + '_README.md', 'README.md');
     generator.template(strategyfolder + '_index.html', 'examples/index.html');
     generator.bulkDirectory(strategyfolder + 'jasmine/javascripts', 'spec/javascripts');
     generator.template(strategyfolder + '_bower-component-spec.coffee', './spec/javascripts/coffee/' + generator.slug + '-spec.coffee');

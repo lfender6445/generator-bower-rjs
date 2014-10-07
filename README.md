@@ -22,6 +22,8 @@ to generate your project, run `yo bower-rjs`
 
 ## TODO ##
   add support for plain old javascript
+  rename spec_helper.js
+  jasmine fixture support
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
