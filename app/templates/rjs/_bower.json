@@ -5,6 +5,23 @@
   "version": "0.0.1",
   "dependencies": {
     "requirejs": "*"
-  }
+  },
+  "ignore": [
+    "examples",
+    "src",
+    "dist/shared/",
+    "dist/js/",
+    "dist/require.config.js",
+    "spec",
+    "vendor",
+    "node_modules",
+    "Gemfile",
+    "Gemfile.lock",
+    "Gruntfile.js",
+    "gulpfile.coffee",
+    "package.json",
+    "Rakefile",
+    "require.build.js"
+  ]
 }
 
